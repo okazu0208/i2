@@ -1,7 +1,6 @@
 import torch
 from torch import autocast
 from diffusers import StableDiffusionPipeline
-import main
 from PIL import Image
 import numpy as np
 import cv2
@@ -10,7 +9,7 @@ import requests
 def main():
   color = []
   i = "unko"
-  ldm = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4")
+  ldm = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", revision="fp16", torch_dtype=torch.float16)
   image = ldm(i, height=560, width=560, num_inference_steps=10).images[0]
   img = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
   color = []
