@@ -9,8 +9,8 @@ import requests
 def main():
   color = []
   i = "unko"
-  ldm = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", revision="fp16", torch_dtype=torch.float16)
-  image = ldm(i, height=560, width=560, num_inference_steps=10).images[0]
+  ldm = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4",variant="fp16", torch_dtype=torch.float16)
+  image = ldm(i,height=400,width=400,guidance_scale=7.5,num_inference_steps=50).images[0]
   img = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
   color = []
   color.append(img.shape[0])
