@@ -1,7 +1,6 @@
 import torch
 from torch import autocast
 from diffusers import StableDiffusionPipeline
-import main
 from PIL import Image
 import numpy as np
 import cv2
