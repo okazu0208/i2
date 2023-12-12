@@ -8,9 +8,11 @@ import base64
 import requests
 def main():
   color = []
-  i = "caffe"
+  i = "coffee"
   ldm = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4")
-  image = ldm(i,height=80,width=80,guidance_scale=3,num_inference_steps=15).images[0]
+  if ldm.safety_checker is not None:
+    ldm.safety_checker = lambda images, **kwargs: (images, False)
+  image = ldm(i,height=320,width=320,num_inference_steps=10).images[0]
   img = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
   color = []
   color.append(img.shape[0])
