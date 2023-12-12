@@ -12,7 +12,7 @@ def main():
   ldm = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4")
   if ldm.safety_checker is not None:
     ldm.safety_checker = lambda images, **kwargs: (images, False)
-  image = ldm(i,height=160,width=160,num_inference_steps=10).images[0]
+  image = ldm(i,height=80,width=80,num_inference_steps=10).images[0]
   img = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
   color = []
   color.append(img.shape[0])
